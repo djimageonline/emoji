@@ -1,19 +1,34 @@
 const myEmojis = ["👨‍💻", "⛷", "🍲"];
 
 const emojiContainerEl = document.getElementById("emoji-container");
+const emojiInput = document.getElementById("emoji-input");
+const pushBtn = document.getElementById("push-btn");
+const unshift = document.getElementById("unshift-btn");
 
-for (let i = 0; i < myEmojis.length; i++) {
-  const emoji = document.createElement("span");
-  emoji.textContent = myEmojis[i];
-  emojiContainerEl.append(emoji);
+function render() {
+  emojiContainerEl.innerHTML = "";
+
+  for (let i = 0; i < myEmojis.length; i++) {
+    const emoji = document.createElement("span");
+    emoji.textContent = myEmojis[i];
+    emojiContainerEl.append(emoji);
+  }
 }
 
-const pushBtn = document.getElementById("push-btn");
+render();
+
 pushBtn.addEventListener("click", function () {
-  const emojiInput = document.getElementById("emoji-input");
   if (emojiInput.value) {
     myEmojis.push(emojiInput.value);
     emojiInput.value = "";
-    console.log(myEmojis);
+    render();
+  }
+});
+
+unshift.addEventListener("click", function () {
+  if (emojiInput.value) {
+    myEmojis.unshift(emojiInput.value);
+    emojiInput.value = "";
+    render();
   }
 });
